@@ -1,0 +1,225 @@
+[
+    {
+        "level1": "6s^{2} 1S0",
+        "level2": "6s6p 3P1",
+        "rme": [
+            {"value": 0.55, "source": "https://arxiv.org/pdf/physics/9903004"},
+            {"value": 0.571, "source": "https://journals.aps.org/pra/pdf/10.1103/PhysRevA.89.012711"}
+        ]
+    },
+    {
+        "level1": "6s^{2} 1S0",
+        "level2": "6s7p 3P1",
+        "rme": [{"value": 0.08, "source": "polarizability.py from Bichen"}]
+    },
+    {
+        "level1": "6s^{2} 1S0",
+        "level2": "6s8p 3P1",
+        "rme": [{"value": 0.014, "source": "polarizability.py from Bichen"}]
+    },
+    {   
+        "level1": "6s^{2} 1S0",
+        "level2": "6s6p 1P1",
+        "rme": [{"value": 4.13, "source": "https://arxiv.org/pdf/physics/9903004"}]
+    },
+    {
+        "level1": "6s^{2} 1S0",
+        "level2": "6s7p 1P1",
+        "rme": [{"value": 0.67, "source": "polarizability.py from Bichen"}]
+    },
+    {
+        "level1": "6s^{2} 1S0",
+        "level2": "6s8p 1P1",
+        "rme": [{"value": 0.21, "source": "polarizability.py from Bichen"}]
+    },
+    {
+        "level1": "6s^{2} 1S0",
+        "level2": "4f^{13}5d_{5/2}6s^{2} J=1",
+        "rme": [{"value": 2.04, "source":"polarizability.py from Bichen"}]
+    },
+    {
+        "level1": "6s^{2} 1S0",
+        "level2": "4f^{13}5d^{2}6s J=1",
+        "rme": [{"value": 0.2, "source":"polarizability.py from Bichen"}]
+    },
+    {
+        "level1": "6s6p 3P0",
+        "level2": "5d6s 3D1",
+        "rme": [
+            {"value": 2.61, "source": "https://arxiv.org/pdf/physics/9903004"},
+            {"value": 2.89, "source": "https://journals.aps.org/pra/pdf/10.1103/PhysRevA.89.012711"}
+        ]
+    },
+    {
+        "level1": "6s6p 3P0",
+        "level2": "6s7s 3S1",
+        "rme": [
+            {"value": 1.98, "source": "https://arxiv.org/pdf/physics/9903004"},
+            {"value": 1.95, "source": "https://journals.aps.org/pra/pdf/10.1103/PhysRevA.89.012711"}
+        ]
+    },
+    {
+        "level1": "6s6p 3P0",
+        "level2": "6s6d 3D1",
+        "rme": [{"value": 1.84, "source": "https://journals.aps.org/pra/pdf/10.1103/PhysRevA.89.012711"}]
+    },
+    {
+        "level1": "6s6p 3P0",
+        "level2": "6s8s 3S1",
+        "rme": [
+            {"value": 0.636, "source": "polarizability.py from Bichen"}
+        ]
+    },
+    {
+        "level1": "6s6p 3P0",
+        "level2": "imaginary_level_3P0 J=1",
+        "rme": [
+            {"value": 3.37, "source": "polarizability.py from Bichen"}
+        ]
+    },
+    {
+        "level1": "6s6p 3P1",
+        "level2": "5d6s 3D1",
+        "rme": [
+            {"value": 2.51, "source": "https://journals.aps.org/pra/pdf/10.1103/PhysRevA.89.012711"},
+            {"value": 2.2, "source": "https://arxiv.org/pdf/physics/9903004"}
+        ]
+    },
+    {
+        "level1": "6s6p 3P1",
+        "level2": "5d6s 3D2",
+        "rme": [
+            {"value": 4.35, "source": "https://journals.aps.org/pra/pdf/10.1103/PhysRevA.89.012711"},
+            {"value": 4.03, "source": "https://arxiv.org/pdf/physics/9903004"}
+        ]
+    },
+    {
+        "level1": "6s6p 3P1",
+        "level2": "5d6s 1D2",
+        "rme": [
+            {"value": 0.54, "source": "https://arxiv.org/pdf/physics/9903004"},
+            {"value": 0.453, "source": "https://journals.aps.org/pra/pdf/10.1103/PhysRevA.89.012711"}
+        ]
+    },
+    {
+        "level1": "6s6p 3P1",
+        "level2": "6s7s 3S1",
+        "rme": [
+            {"value": 3.46, "source": "https://journals.aps.org/pra/pdf/10.1103/PhysRevA.89.012711"},
+            {"value": 3.53, "source": "https://arxiv.org/pdf/physics/9903004"}
+        ]
+    },
+    {
+        "level1": "6s6p 3P1",
+        "level2": "6s7s 1S0",
+        "rme": [
+            {"value": 0.22, "source": "https://arxiv.org/pdf/physics/9903004"},
+            {"value": 0.243, "source": "https://journals.aps.org/pra/pdf/10.1103/PhysRevA.89.012711"}
+        ]
+    },
+    {
+        "level1": "6s6p 3P1",
+        "level2": "6s8s 3S1",
+        "rme": [{"value": 1.0, "source": "polarizability.py from Bichen"}]
+    },
+    {
+        "level1": "6s6p 3P1",
+        "level2": "6s8s 1S0",
+        "rme": [{"value": 0.29, "source": "polarizability.py from Bichen"}]
+    },
+    {
+        "level1": "6s6p 3P1",
+        "level2": "6s6d 3D1",
+        "rme": [{"value": 1.62, "source": "https://journals.aps.org/pra/pdf/10.1103/PhysRevA.89.012711"}]
+    },
+    {
+        "level1": "6s6p 3P1",
+        "level2": "6s6d 3D2",
+        "rme": [{"value": 2.78, "source": "https://journals.aps.org/pra/pdf/10.1103/PhysRevA.89.012711"}]
+    },
+    {
+        "level1": "6s6p 3P1",
+        "level2": "6s6d 1D2",
+        "rme": [{"value": 0.614, "source": "https://journals.aps.org/pra/pdf/10.1103/PhysRevA.89.012711"}]
+    },
+    {
+        "level1": "6s6p 3P1",
+        "level2": "6p^{2} 3P0",
+        "rme": [{"value": 2.59, "source": "polarizability.py from Bichen"}]
+    },
+    {
+        "level1": "6s6p 3P1",
+        "level2": "6p^{2} 3P1",
+        "rme": [{"value": 0.18, "source": "polarizability.py from Bichen"}]
+    },
+    {
+        "level1": "6s6p 3P1",
+        "level2": "6p^{2} 3P2",
+        "rme": [{"value": 2.92, "source": "polarizability.py from Bichen"}]
+    },
+    {
+        "level1": "6s6p 3P1",
+        "level2": "6s7d 3D1",
+        "rme": [{"value": 2.47, "source": "polarizability.py from Bichen"}]
+    },
+    {
+        "level1": "6s6p 3P1",
+        "level2": "6s7d 3D2",
+        "rme": [{"value": 1.67, "source": "polarizability.py from Bichen"}]
+    },
+    {
+        "level1": "6s6p 3P1",
+        "level2": "6s7d 1D2",
+        "rme": [{"value": 0.86, "source": "polarizability.py from Bichen"}]
+    },
+    {
+        "level1": "6s6p 3P2",
+        "level2": "5d6s 3D1",
+        "rme": [{"value": 0.6, "source": "https://arxiv.org/pdf/physics/9903004"}]
+    },
+    {
+        "level1": "6s6p 3P2",
+        "level2": "5d6s 3D2",
+        "rme": [{"value": 2.39, "source": "https://arxiv.org/pdf/physics/9903004"}]
+    },
+    {
+        "level1": "6s6p 3P2",
+        "level2": "6s6d 3D2",
+        "rme": [{"value": 1.61, "source": "OneNote: 10/27/2023 -- Theoretical calculation for 3D2 (496nm)"}]
+    },
+    {
+        "level1": "6s6p 3P2",
+        "level2": "5d6s 3D3",
+        "rme": [{"value": 6.12, "source": "https://arxiv.org/pdf/physics/9903004"}]
+    },
+    {
+        "level1": "6s6p 3P2",
+        "level2": "5d6s 1D2",
+        "rme": [{"value": 0.38, "source": "https://arxiv.org/pdf/physics/9903004"}]
+    },
+    {
+        "level1": "6s6p 3P2",
+        "level2": "6s7s 3S1",
+        "rme": [{"value": 5.05, "source": "https://arxiv.org/pdf/physics/9903004"}]
+    },
+    {
+        "level1": "6s6p 1P1",
+        "level2": "5d6s 3D1",
+        "rme": [{"value": 0.24, "source": "https://arxiv.org/pdf/physics/9903004"}]
+    },
+    {
+        "level1": "6s6p 1P1",
+        "level2": "5d6s 1D2",
+        "rme": [{"value": 3.6, "source": "https://arxiv.org/pdf/physics/9903004"}]
+    },
+    {
+        "level1": "6s6p 1P1",
+        "level2": "6s7s 3S1",
+        "rme": [{"value": 0.73, "source": "https://arxiv.org/pdf/physics/9903004"}]
+    },
+    {
+        "level1": "6s6p 1P1",
+        "level2": "6s7s 1S0",
+        "rme": [{"value": 4.31, "source": "https://arxiv.org/pdf/physics/9903004"}]
+    }
+]

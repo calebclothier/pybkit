@@ -1,0 +1,923 @@
+[
+    {
+        "level_id": "6s^{2} 1S0",
+        "configuration": "[Xe]4f^{14}6s^{2}",
+        "term_symbol": "1S0",
+        "S": 0,
+        "L": 0,
+        "J": 0,
+        "lande_g": 0,
+        "energy": [
+            {
+                "value": 0,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ],
+        "magnetic_dipole_hyperfine_constant": 0,
+        "core_polarizability": [
+            {
+                "value": 8.91,
+                "units": "a.u."
+            }
+        ]
+    },
+    {
+        "level_id": "6s6p 3P0",
+        "configuration": "[Xe]4f^{14}6s6p",
+        "term_symbol": "3P0",
+        "S": 1,
+        "L": 1,
+        "J": 0,
+        "lande_g": 0,
+        "energy": [
+            {
+                "value": 17288.44,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ],
+        "magnetic_dipole_hyperfine_constant": 0
+    },
+    {
+        "level_id": "6s6p 3P1",
+        "configuration": "[Xe]4f^{14}6s6p",
+        "term_symbol": "3P1",
+        "S": 1,
+        "L": 1,
+        "J": 1,
+        "lande_g": 1.49,
+        "energy": [
+            {
+                "value": 17992.01,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ],
+        "magnetic_dipole_hyperfine_constant": [
+            {
+                "value": 3.9578,
+                "units": "GHz",
+                "source": "https://arxiv.org/pdf/1908.03350"
+            }
+        ]
+    },
+    {
+        "level_id": "6s6p 3P2",
+        "configuration": "[Xe]4f^{14}6s6p",
+        "term_symbol": "3P2",
+        "S": 1,
+        "L": 1,
+        "J": 2,
+        "lande_g": 1.50,
+        "energy": [
+            {
+                "value": 19710.39,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ],
+        "magnetic_dipole_hyperfine_constant": [
+            {
+                "value": 2.677,
+                "units": "GHz",
+                "source": "Porsev PRA 2004"
+            }
+        ]
+    },
+    {
+        "level_id": "4f^{13}5d_{3/2}6s^{2} J=2",
+        "configuration": "[Xe]4f^{13}5d_{3/2}6s^{2}",
+        "term_symbol": "(7I2, 3I2)",
+        "S": null,
+        "L": null,
+        "J": 2,
+        "lande_g": 1.45,
+        "energy": [
+            {
+                "value": 23188.52,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ]
+    },
+    {
+        "level_id": "4f^{13}5d_{3/2}6s^{2} J=5",
+        "configuration": "[Xe]4f^{13}5d_{3/2}6s^{2}",
+        "term_symbol": "(7I2, 3I2)",
+        "S": null,
+        "L": null,
+        "J": 5,
+        "lande_g": 1.04,
+        "energy": [
+            {
+                "value": 25859.68,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ]
+    },
+    {
+        "level_id": "4f^{13}5d_{3/2}6s^{2} J=3",
+        "configuration": "[Xe]4f^{13}5d_{3/2}6s^{2}",
+        "term_symbol": "(7I2, 3I2)",
+        "S": null,
+        "L": null,
+        "J": 3,
+        "lande_g": 1.22,
+        "energy": [
+            {
+                "value": 27445.64,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ]
+    },
+    {
+        "level_id": "4f^{13}5d_{3/2}6s^{2} J=4",
+        "configuration": "[Xe]4f^{13}5d_{3/2}6s^{2}",
+        "term_symbol": "(7I2, 3I2)",
+        "S": null,
+        "L": null,
+        "J": 4,
+        "lande_g": 1.14,
+        "energy": [
+            {
+                "value": 28184.51,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ]
+    },
+    {
+        "level_id": "5d6s 3D1",
+        "configuration": "[Xe]4f^{14}5d6s",
+        "term_symbol": "3D1",
+        "S": 1,
+        "L": 2,
+        "J": 1,
+        "lande_g": 0.50,
+        "energy": [
+            {
+                "value": 24489.10,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ],
+        "magnetic_dipole_hyperfine_constant": [
+            {
+                "value": -2.042,
+                "units": "GHz",
+                "source": "Stalnaker PhD thesis, Berkeley 1999"
+            }
+        ]
+    },
+    {
+        "level_id": "5d6s 3D2",
+        "configuration": "[Xe]4f^{14}5d6s",
+        "term_symbol": "3D2",
+        "S": 1,
+        "L": 2,
+        "J": 2,
+        "lande_g": 1.16,
+        "energy": [
+            {
+                "value": 24751.95,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ],
+        "magnetic_dipole_hyperfine_constant": [
+            {
+                "value": 1.311,
+                "units": "GHz",
+                "source": "Bowers PRA 1999"
+            }
+        ]
+    },
+    {
+        "level_id": "5d6s 3D3",
+        "configuration": "[Xe]4f^{14}5d6s",
+        "term_symbol": "3D3",
+        "S": 1,
+        "L": 2,
+        "J": 3,
+        "lande_g": 1.34,
+        "energy": [
+            {
+                "value": 25270.90,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ]
+    },
+    {
+        "level_id": "6s6p 1P1",
+        "configuration": "[Xe]4f^{14}6s6p",
+        "term_symbol": "1P1",
+        "S": 0,
+        "L": 1,
+        "J": 1,
+        "lande_g": 1.04,
+        "energy": [
+            {
+                "value": 25068.22,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ],
+        "magnetic_dipole_hyperfine_constant": [
+            {
+                "value": -0.213,
+                "units": "GHz",
+                "source": "https://doi.org/10.1364/JOSAB.9.000332"
+            }
+        ]
+    },
+    {
+        "level_id": "4f^{13}5d_{5/2}6s^{2} J=6",
+        "configuration": "[Xe]4f^{13}5d_{5/2}6s^{2}",
+        "term_symbol": "(7I2, 5I2)",
+        "S": null,
+        "L": null,
+        "J": 6,
+        "lande_g": 1.16,
+        "energy": [
+            {
+                "value": 27314.92,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ]
+    },
+    {
+        "level_id": "4f^{13}5d_{5/2}6s^{2} J=2",
+        "configuration": "[Xe]4f^{13}5d_{5/2}6s^{2}",
+        "term_symbol": "(7I2, 5I2)",
+        "S": null,
+        "L": null,
+        "J": 2,
+        "lande_g": 1.02,
+        "energy": [
+            {
+                "value": 28195.96,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ]
+    },
+    {
+        "level_id": "4f^{13}5d_{5/2}6s^{2} J=1",
+        "configuration": "[Xe]4f^{13}5d_{5/2}6s^{2}",
+        "term_symbol": "(7I2, 5I2)",
+        "S": null,
+        "L": null,
+        "J": 1,
+        "lande_g": 1.26,
+        "energy": [
+            {
+                "value": 28857.01,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ]
+    },
+    {
+        "level_id": "4f^{13}5d_{5/2}6s^{2} J=4",
+        "configuration": "[Xe]4f^{13}5d_{5/2}6s^{2}",
+        "term_symbol": "(7I2, 5I2)",
+        "S": null,
+        "L": null,
+        "J": 4,
+        "lande_g": 1.09,
+        "energy": [
+            {
+                "value": 29774.96,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ]
+    },
+    {
+        "level_id": "4f^{13}5d_{5/2}6s^{2} J=3",
+        "configuration": "[Xe]4f^{13}5d_{5/2}6s^{2}",
+        "term_symbol": "(7I2, 5I2)",
+        "S": null,
+        "L": null,
+        "J": 3,
+        "lande_g": 1.08,
+        "energy": [
+            {
+                "value": 30207.38,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ]
+    },
+    {
+        "level_id": "4f^{13}5d_{5/2}6s^{2} J=5",
+        "configuration": "[Xe]4f^{13}5d_{5/2}6s^{2}",
+        "term_symbol": "(7I2, 5I2)",
+        "S": null,
+        "L": null,
+        "J": 5,
+        "lande_g": 1.18,
+        "energy": [
+            {
+                "value": 30524.71,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ]
+    },
+    {
+        "level_id": "5d6s 1D2",
+        "configuration": "[Xe]4f^{14}5d6s",
+        "term_symbol": "1D2",
+        "S": 0,
+        "L": 2,
+        "J": 2,
+        "lande_g": 1.01,
+        "energy": [
+            {
+                "value": 27677.67,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ]
+    },
+    {
+        "level_id": "4f^{13}6s^{2}6p_{1/2} J=3",
+        "configuration": "[Xe]4f^{13}6s^{2}6p_{1/2}",
+        "term_symbol": "(7I2, 1I2)",
+        "S": null,
+        "L": null,
+        "J": 3,
+        "lande_g": 1.23,
+        "energy": [
+            {
+                "value": 32065.28,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ]
+    },
+    {
+        "level_id": "4f^{13}6s^{2}6p_{1/2} J=4",
+        "configuration": "[Xe]4f^{13}6s^{2}6p_{1/2}",
+        "term_symbol": "(7I2, 1I2)",
+        "S": null,
+        "L": null,
+        "J": 4,
+        "lande_g": null,
+        "energy": [
+            {
+                "value": 32273.60,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ]
+    },
+    {
+        "level_id": "6s7s 3S1",
+        "configuration": "[Xe]4f^{14}6s7s",
+        "term_symbol": "3S1",
+        "S": 1,
+        "L": 0,
+        "J": 1,
+        "lande_g": 2.01,
+        "energy": [
+            {
+                "value": 32694.69,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ],
+        "magnetic_dipole_hyperfine_constant": [
+            {
+                "value": 6.81,
+                "units": "GHz",
+                "source": "https://doi.org/10.1364/JOSAB.9.000332"
+            }
+        ]
+    },
+    {
+        "level_id": "6s7s 1S0",
+        "configuration": "[Xe]4f^{14}6s7s",
+        "term_symbol": "1S0",
+        "S": 0,
+        "L": 0,
+        "J": 0,
+        "lande_g": 0,
+        "energy": [
+            {
+                "value": 34350.65,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ]
+    },
+    {
+        "level_id": "4f^{13}6s^{2}6p_{3/2} J=5",
+        "configuration": "[Xe]4f^{13}6s^{2}6p_{3/2}",
+        "term_symbol": "(7I2, 3I2)",
+        "S": null,
+        "L": null,
+        "J": 5,
+        "lande_g": null,
+        "energy": [
+            {
+                "value": 35178.78,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ]
+    },
+    {
+        "level_id": "4f^{13}6s^{2}6p_{3/2} J=2",
+        "configuration": "[Xe]4f^{13}6s^{2}6p_{3/2}",
+        "term_symbol": "(7I2, 3I2)",
+        "S": null,
+        "L": null,
+        "J": 2,
+        "lande_g": 1.05,
+        "energy": [
+            {
+                "value": 35196.98,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ]
+    },
+    {
+        "level_id": "4f^{13}6s^{2}6p_{3/2} J=3",
+        "configuration": "[Xe]4f^{13}6s^{2}6p_{3/2}",
+        "term_symbol": "(7I2, 3I2)",
+        "S": null,
+        "L": null,
+        "J": 3,
+        "lande_g": 1.08,
+        "energy": [
+            {
+                "value": 35807.52,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ]
+    },
+    {
+        "level_id": "4f^{13}6s^{2}6p_{3/2} J=4",
+        "configuration": "[Xe]4f^{13}6s^{2}6p_{3/2}",
+        "term_symbol": "(7I2, 3I2)",
+        "S": null,
+        "L": null,
+        "J": 4,
+        "lande_g": null,
+        "energy": [
+            {
+                "value": 36060.98,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ]
+    },
+    {
+        "level_id": "6s7p 3P0",
+        "configuration": "[Xe]4f^{14}6s7p",
+        "term_symbol": "3P0",
+        "S": 1,
+        "L": 1,
+        "J": 0,
+        "lande_g": 0,
+        "energy": [
+            {
+                "value": 38090.71,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ]
+    },
+    {
+        "level_id": "4f^{13}5d^{2}6s J=1",
+        "configuration": "[Xe]4f^{13}5d^{2}6s",
+        "term_symbol": "3P0",
+        "S": null,
+        "L": null,
+        "J": 1,
+        "lande_g": 1.02,
+        "energy": [
+            {
+                "value": 37414.59,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ]
+    },
+    {
+        "level_id": "6s7p 3P1",
+        "configuration": "[Xe]4f^{14}6s7p",
+        "term_symbol": "3P1",
+        "S": 1,
+        "L": 1,
+        "J": 1,
+        "lande_g": 1.14,
+        "energy": [
+            {
+                "value": 38174.17,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ]
+    },
+    {
+        "level_id": "6s7p 3P2",
+        "configuration": "[Xe]4f^{14}6s7p",
+        "term_symbol": "3P2",
+        "S": 1,
+        "L": 1,
+        "J": 2,
+        "lande_g": 1.50,
+        "energy": [
+            {
+                "value": 38551.93,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ]
+    },
+    {
+        "level_id": "6s6d 3D1",
+        "configuration": "[Xe]4f^{14}6s6d",
+        "term_symbol": "3D1",
+        "S": 1,
+        "L": 2,
+        "J": 1,
+        "lande_g": 0.50,
+        "energy": [
+            {
+                "value": 39808.72,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ]
+    },
+    {
+        "level_id": "6s6d 3D2",
+        "configuration": "[Xe]4f^{14}6s6d",
+        "term_symbol": "3D2",
+        "S": 1,
+        "L": 2,
+        "J": 2,
+        "lande_g": 1.16,
+        "energy": [
+            {
+                "value": 39838.04,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ]
+    },
+    {
+        "level_id": "6s6d 3D3",
+        "configuration": "[Xe]4f^{14}6s6d",
+        "term_symbol": "3D3",
+        "S": 1,
+        "L": 2,
+        "J": 3,
+        "lande_g": 1.33,
+        "energy": [
+            {
+                "value": 39966.09,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ]
+    },
+    {
+        "level_id": "4f^{13}5d6s6p_{3/2} J=2",
+        "configuration": "[Xe]4f^{13}5d6s6p",
+        "term_symbol": "(7I2, 3I2)",
+        "S": null,
+        "L": null,
+        "J": 2,
+        "lande_g": 1.83,
+        "energy": [
+            {
+                "value": 39880.26,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ]
+    },
+    {
+        "level_id": "4f^{13}5d6s6p_{3/2} J=5",
+        "configuration": "[Xe]4f^{13}5d6s6p",
+        "term_symbol": "(7I2, 3I2)",
+        "S": null,
+        "L": null,
+        "J": 5,
+        "lande_g": 0.89,
+        "energy": [
+            {
+                "value": 42935.78,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ]
+    },
+    {
+        "level_id": "4f^{13}5d6s6p_{3/2} J=4",
+        "configuration": "[Xe]4f^{13}5d6s6p",
+        "term_symbol": "(7I2, 3I2)",
+        "S": null,
+        "L": null,
+        "J": 4,
+        "lande_g": 1.08,
+        "energy": [
+            {
+                "value": 44984.75,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ]
+    },
+    {
+        "level_id": "4f^{13}5d6s6p_{3/2} J=3",
+        "configuration": "[Xe]4f^{13}5d6s6p",
+        "term_symbol": "(7I2, 3I2)",
+        "S": null,
+        "L": null,
+        "J": 3,
+        "lande_g": 1.20,
+        "energy": [
+            {
+                "value": 45462.54,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ]
+    },
+    {
+        "level_id": "4f^{13}5d6s6p_{3/2} J=6(?)",
+        "configuration": "[Xe]4f^{13}5d6s6p",
+        "term_symbol": "(7I2, 3I2)",
+        "S": null,
+        "L": null,
+        "J": 6,
+        "lande_g": 1.16,
+        "energy": [
+            {
+                "value": 47088.16,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ]
+    },
+    {
+        "level_id": "6s6d 1D2",
+        "configuration": "[Xe]4f^{14}6s6d",
+        "term_symbol": "1D2",
+        "S": 0,
+        "L": 2,
+        "J": 2,
+        "lande_g": 1.03,
+        "energy": [
+            {
+                "value": 40061.51,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ],
+        "magnetic_dipole_hyperfine_constant": [
+            {
+                "value": -1.573,
+                "units": "GHz",
+                "source": "https://doi.org/10.1364/JOSAB.9.000332"
+            }
+        ]
+    },
+    {
+        "level_id": "6s7p 1P1",
+        "configuration": "[Xe]4f^{14}6s7p",
+        "term_symbol": "1P1",
+        "S": 0,
+        "L": 1,
+        "J": 1,
+        "lande_g": 1.01,
+        "energy": [
+            {
+                "value": 40563.97,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ]
+    },
+    {
+        "level_id": "6s8s 3S1",
+        "configuration": "[Xe]4f^{14}6s8s",
+        "term_symbol": "3S1",
+        "S": 1,
+        "L": 0,
+        "J": 1,
+        "lande_g": 2.02,
+        "energy": [
+            {
+                "value": 41615.04,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ]
+    },
+    {
+        "level_id": "6s8s 1S0",
+        "configuration": "[Xe]4f^{14}6s8s",
+        "term_symbol": "1S0",
+        "S": 0,
+        "L": 0,
+        "J": 0,
+        "lande_g": 0,
+        "energy": [
+            {
+                "value": 41939.90,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ]
+    },
+    {
+        "level_id": "6p^{2} 3P0",
+        "configuration": "[Xe]4f^{14}6p^{2}",
+        "term_symbol": "3P0",
+        "S": 1,
+        "L": 1,
+        "J": 0,
+        "lande_g": 0,
+        "energy": [
+            {
+                "value": 42436.91,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ]
+    },
+    {
+        "level_id": "6p^{2} 3P1",
+        "configuration": "[Xe]4f^{14}6p^{2}",
+        "term_symbol": "3P1",
+        "S": 1,
+        "L": 1,
+        "J": 1,
+        "lande_g": 1.47,
+        "energy": [
+            {
+                "value": 43805.42,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ]
+    },
+    {
+        "level_id": "6p^{2} 3P2",
+        "configuration": "[Xe]4f^{14}6p^{2}",
+        "term_symbol": "3P2",
+        "S": 1,
+        "L": 1,
+        "J": 2,
+        "lande_g": 1.34,
+        "energy": [
+            {
+                "value": 44760.37,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ]
+    },
+    {
+        "level_id": "6s8p 3P0",
+        "configuration": "[Xe]4f^{14}6s8p",
+        "term_symbol": "3P0",
+        "S": 1,
+        "L": 1,
+        "J": 0,
+        "lande_g": 0,
+        "energy": [
+            {
+                "value": 43614.27,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ]
+    },
+    {
+        "level_id": "6s8p 3P1",
+        "configuration": "[Xe]4f^{14}6s8p",
+        "term_symbol": "3P1",
+        "S": 1,
+        "L": 1,
+        "J": 1,
+        "lande_g": 1.48,
+        "energy": [
+            {
+                "value": 43659.38,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ]
+    },
+    {
+        "level_id": "6s8p 3P2",
+        "configuration": "[Xe]4f^{14}6s8p",
+        "term_symbol": "3P2",
+        "S": 1,
+        "L": 1,
+        "J": 2,
+        "lande_g": 1.49,
+        "energy": [
+            {
+                "value": 43805.69,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ]
+    },
+    {
+        "level_id": "6s8p 1P1",
+        "configuration": "[Xe]4f^{14}6s8p",
+        "term_symbol": "1P1",
+        "S": 0,
+        "L": 1,
+        "J": 1,
+        "lande_g": 1.00,
+        "energy": [
+            {
+                "value": 44017.60,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ]
+    },
+    {
+        "level_id": "6s7d 3D1",
+        "configuration": "[Xe]4f^{14}6s7d",
+        "term_symbol": "3D1",
+        "S": 1,
+        "L": 2,
+        "J": 1,
+        "lande_g": null,
+        "energy": [
+            {
+                "value": 44311.38,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ]
+    },
+    {
+        "level_id": "6s7d 3D2",
+        "configuration": "[Xe]4f^{14}6s7d",
+        "term_symbol": "3D2",
+        "S": 1,
+        "L": 2,
+        "J": 2,
+        "lande_g": null,
+        "energy": [
+            {
+                "value": 44313.05,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ]
+    },
+    {
+        "level_id": "6s7d 3D3",
+        "configuration": "[Xe]4f^{14}6s7d",
+        "term_symbol": "3D3",
+        "S": 1,
+        "L": 2,
+        "J": 3,
+        "lande_g": 1.32,
+        "energy": [
+            {
+                "value": 44380.82,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ]
+    },
+    {
+        "level_id": "6s7d 1D2",
+        "configuration": "[Xe]4f^{14}6s7d",
+        "term_symbol": "1D2",
+        "S": 0,
+        "L": 2,
+        "J": 2,
+        "lande_g": 1.10,
+        "energy": [
+            {
+                "value": 44357.60,
+                "units": "cm-1",
+                "source": "Yb Level Structure (NIST)"
+            }
+        ]
+    }
+]
