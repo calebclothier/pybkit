@@ -5,9 +5,9 @@ from scipy.integrate import odeint
 import multiprocess as mp
 from tqdm.notebook import tqdm
 
-from ..amo.atom import AtomSpecies, HyperfineEnergyLevel
-from .tweezers import Tweezer
-from .trajectory import Trajectory
+from pybkit.amo.atom import AtomSpecies, HyperfineEnergyLevel
+from pybkit.trap.tweezers import Tweezer
+from pybkit.trap.trajectory import Trajectory
 
 
 class TweezerMove:
@@ -79,7 +79,13 @@ class TweezerMove:
         energy = np.array(energy, dtype=float)
         return energy
         
-    def simulate_atom_dynamics(self, t, p0, v0, plot=True):
+    def simulate_atom_dynamics(
+        self, 
+        t: np.ndarray, 
+        p0: np.ndarray,
+        v0: np.ndarray,
+        plot=True
+    ):
         def derivative(t, var):
             x, y, z, vx, vy, vz = var
             ax, ay, az = self.get_trajectory_force(t, x, y, z) / self.atom.mass
@@ -91,7 +97,12 @@ class TweezerMove:
             self.plot_atom_dynamics(t, position, velocity)
         return position, velocity
     
-    def simulate_atom_dynamics_parallel(self, t, p0s, v0s):
+    def simulate_atom_dynamics_parallel(
+        self, 
+        t: np.ndarray, 
+        p0s: np.ndarray, 
+        v0s: np.ndarray
+    ):
         num_samples = np.array(p0s).shape[0]
         def _simulate(ample_idx):
             return self.simulate_atom_dynamics(t, p0s[ample_idx,:], v0s[ample_idx,:], plot=False)
@@ -100,7 +111,14 @@ class TweezerMove:
             sol_list = list(tqdm(p.imap(_simulate, range(num_samples)), total=num_samples))
         return sol_list
     
-    def simulate_ensemble_dynamics(self, t: np.ndarray, T, num_samples, plot=True, num_bins=30):
+    def simulate_ensemble_dynamics(
+        self, 
+        t: np.ndarray, 
+        T: float, 
+        num_samples: int, 
+        plot: bool = True, 
+        num_bins: int = 30
+    ):
         # sample initial positions and velocities
         p_initial, v_initial = self.sample_maxwell_boltzmann(
             num_samples=num_samples, T=T, avg_position=self.txyz[0,:])
@@ -169,7 +187,12 @@ class TweezerMove:
             plt.legend()
         return energy_initial, energy_final
     
-    def plot_atom_dynamics(self, t, position, velocity):
+    def plot_atom_dynamics(
+        self, 
+        t: np.ndarray, 
+        position: np.ndarray, 
+        velocity: np.ndarray
+    ):
         fig, ax = plt.subplots(nrows=3, ncols=2, sharex=True, figsize=(8,7))
         ax[0,0].plot(t*1e6, self.traj.x(t)*1e6, label='x')
         ax[0,0].plot(t*1e6, self.traj.y(t)*1e6, label='y')

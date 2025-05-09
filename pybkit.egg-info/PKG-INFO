@@ -1,7 +1,0 @@
-Metadata-Version: 2.1
-Name: pybkit
-Version: 0.1
-Summary: Software representation of a neutral atom quantum computer
-Author: Caleb Clothier
-Requires-Dist: numpy
-Requires-Dist: pandas

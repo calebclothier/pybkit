@@ -135,7 +135,9 @@
     {
         "level1": "6s6p 3P1",
         "level2": "6s6d 3D2",
-        "rme": [{"value": 2.78, "source": "https://journals.aps.org/pra/pdf/10.1103/PhysRevA.89.012711"}]
+        "rme": [
+            {"value": 1.61, "source": "Estimation from 3D2 lifetime + branching ratio"},
+            {"value": 1.605, "source": "https://journals.aps.org/pra/pdf/10.1103/PhysRevA.89.012711"}]
     },
     {
         "level1": "6s6p 3P1",
@@ -175,7 +177,7 @@
     {
         "level1": "6s6p 3P2",
         "level2": "5d6s 3D1",
-        "rme": [{"value": 0.6, "source": "https://arxiv.org/pdf/physics/9903004"}]
+        "rme": [{"value": 0.27, "source": "https://arxiv.org/pdf/physics/9903004"}]
     },
     {
         "level1": "6s6p 3P2",
@@ -185,7 +187,7 @@
     {
         "level1": "6s6p 3P2",
         "level2": "6s6d 3D2",
-        "rme": [{"value": 1.61, "source": "OneNote: 10/27/2023 -- Theoretical calculation for 3D2 (496nm)"}]
+        "rme": [{"value": 0.72, "source": "Estimation from 3D2 lifetime + branching ratio"}]
     },
     {
         "level1": "6s6p 3P2",
@@ -200,7 +202,7 @@
     {
         "level1": "6s6p 3P2",
         "level2": "6s7s 3S1",
-        "rme": [{"value": 5.05, "source": "https://arxiv.org/pdf/physics/9903004"}]
+        "rme": [{"value": 2.258, "source": "https://arxiv.org/pdf/physics/9903004"}]
     },
     {
         "level1": "6s6p 1P1",

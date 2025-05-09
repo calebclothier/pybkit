@@ -25,6 +25,21 @@ class Laser:
         
     def __repr__(self) -> str:
         return f'Laser(wavelength={self.wavelength}, linewidth={self.linewidth}, power={self.power})'
+    
+
+class LaserPolarization:
+    def __init__(self, pi: float, sigma_plus: float, sigma_minus: float):
+        """
+        Initialize the polarization components.
+            pi: Component of π polarization
+            sigma_plus: Component of σ⁺ polarization
+            sigma_minus: Component of σ⁻ polarization
+        """
+        if (pi + sigma_plus + sigma_minus) != 1:
+            raise ValueError('Polarization components must sum to 1')
+        self.pi = pi
+        self.sigma_plus = sigma_plus
+        self.sigma_minus = sigma_minus
 
 
 class GaussianLaser(Laser):
@@ -102,14 +117,14 @@ class GaussianLaser(Laser):
 
 
 def wavelength_to_rgb(wavelength, gamma=0.8):
-
-    '''This converts a given wavelength of light to an
+    """
+    This converts a given wavelength of light to an
     approximate RGB color value. The wavelength must be given
     in nanometers in the range from 380 nm through 750 nm
     (789 THz through 400 THz).
     Based on code by Dan Bruton
     http://www.physics.sfasu.edu/astro/color/spectra.html
-    '''
+    """
 
     wavelength = float(wavelength)
     if wavelength >= 380 and wavelength <= 440:

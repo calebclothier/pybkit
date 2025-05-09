@@ -6,10 +6,9 @@ from scipy import constants
 from scipy.integrate import odeint
 from scipy.integrate import solve_ivp
 
-from ..amo.laser import GaussianLaser
-from ..amo.atom import AtomSpecies, FineEnergyLevel, HyperfineEnergyLevel
-from .. import units
-from .geometry import Vector3D
+from pybkit.amo.laser import GaussianLaser
+from pybkit.amo.atom import AtomSpecies, FineEnergyLevel, HyperfineEnergyLevel
+from pybkit import units
 
 if TYPE_CHECKING:
     from .generator import AODDevice, SLMDevice
@@ -42,7 +41,7 @@ class Atom:
 
 class Tweezer:
 
-    def __init__(self, position: Vector3D, laser: GaussianLaser):
+    def __init__(self, position: list, laser: GaussianLaser):
         self.position = position
         self.atom = None
         self.laser = laser
@@ -169,7 +168,7 @@ class TweezerGroup:
     def plot(self):
         plt.figure()
         for tweezer in self.tweezers:
-            plt.scatter(tweezer.position.x, tweezer.position.y, c='C0')
+            plt.scatter(tweezer.position[0], tweezer.position[1], c='C0')
         plt.xlabel('x position [$\mu$m]')
         plt.ylabel('y position [$\mu$m]')
         
@@ -189,13 +188,13 @@ class TweezerEnsemble:
             self.velocity = np.array(velocity)
         self.ensemble_size = np.shape(self.pos)[1]
 
-    def calc_energy_spec(self, energy_func, t=None, f_energy=1 / constants.Planck):
+    def calc_energy_spec(self, atom_species: AtomSpecies, energy_func, t=None, f_energy=1 / constants.Planck):
         if t is not None:
             V_xyz = lambda x, y, z: energy_func(t, x, y, z)
         else:
             V_xyz = energy_func
 
-        kinetic_energy = 1 / 2 * mass * np.sum(self.velocity ** 2, axis=0)
+        kinetic_energy = 1 / 2 * atom_species.mass * np.sum(self.velocity ** 2, axis=0)
         potential_energy = V_xyz(*self.pos)
 
         return (kinetic_energy + potential_energy) * f_energy

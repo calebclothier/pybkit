@@ -1,9 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-from ..amo.laser import GaussianLaser
-from .geometry import Vector3D
-from .tweezers import Tweezer, TweezerGroup
+from pybkit.amo.laser import GaussianLaser
+# from .geometry import Vector3D
+from pybkit.trap.tweezers import Tweezer, TweezerGroup
 
 
 class SLMDevice:
@@ -12,7 +12,7 @@ class SLMDevice:
         self.laser = laser
         self.tweezer_group = None
 
-    def generate_tweezers(self, positions: list[Vector3D]) -> TweezerGroup:
+    def generate_tweezers(self, positions) -> TweezerGroup:
         tweezers = [Tweezer(position, self.laser) for position in positions]
         self.tweezer_group = TweezerGroup(tweezers, generator=self)
         return self.tweezer_group
@@ -31,7 +31,7 @@ class AODDevice:
         self.spacing = None
 
     def generate_tweezers(self, row_freqs: list, col_freqs: list, spacing: float) -> TweezerGroup:
-        tweezers = [Tweezer(Vector3D(fx, fy, 0), self.laser) for fx in col_freqs for fy in row_freqs]
+        tweezers = [Tweezer([fx, fy, 0], self.laser) for fx in col_freqs for fy in row_freqs]
         self.tweezer_group = TweezerGroup(tweezers, generator=self)
         self.row_freqs = row_freqs
         self.col_freqs = col_freqs
@@ -39,6 +39,7 @@ class AODDevice:
         return self.tweezer_group
 
     def plot_tweezers_phonon_dispersion(self):
+        from matplotlib.legend_handler import HandlerLine2D
         thetas = np.linspace(-np.pi/100, np.pi/100, 1000)
         thetas = np.append(thetas, np.linspace(np.pi/2-np.pi/100, np.pi/2+np.pi/100, 1000))
         velocity = self.acoustic_velocity(thetas)
@@ -49,23 +50,37 @@ class AODDevice:
         plt.figure(figsize=(7,7))
         min_x, max_x = np.inf, -np.inf
         min_y, max_y = np.inf, -np.inf
-        for tweezer in self.tweezer_group.tweezers:
+        for i, tweezer in enumerate(self.tweezer_group.tweezers):
             pos = tweezer.position
-            if pos.x < min_x:
-                min_x = pos.x
-            if pos.x > max_x:
-                max_x = pos.x
-            if pos.y < min_y:
-                min_y = pos.y
-            if pos.y > max_y:
-                max_y = pos.y
-            plt.scatter(xs*pos.x/max_val, ys*pos.x/max_val + pos.y, c='C0', alpha=0.1, s=2)
-            plt.scatter(xs*pos.y/max_val + pos.x, ys*pos.y/max_val, c='C4', alpha=0.1, s=2)
-            plt.scatter(pos.x, pos.y, c='C1', s=20)
+            if pos[0] < min_x:
+                min_x = pos[0]
+            if pos[0] > max_x:
+                max_x = pos[0]
+            if pos[1] < min_y:
+                min_y = pos[1]
+            if pos[1] > max_y:
+                max_y = pos[1]
+            if i > 0:
+                label1, label2, label3 = None, None, None
+            else:
+                label1 = 'column dispersion'
+                label2 = 'row dispersion'
+                label3 = 'tweezer site'
+            col_disp = plt.scatter(xs*pos[0]/max_val, ys*pos[0]/max_val + pos[1], c='C0', alpha=1, s=0.1, label=label1)
+            row_disp = plt.scatter(xs*pos[1]/max_val + pos[0], ys*pos[1]/max_val, c='C4', alpha=1, s=0.1, label=label2)
+            sites = plt.scatter(pos[0], pos[1], c='C1', s=20, label=label3)
         xscale = max_x - min_x
         yscale = max_y - min_y
         plt.xlim(min_x - 0.8*xscale, max_x + 0.8*xscale)
         plt.ylim(min_y - 0.8*yscale, max_y + 0.8*yscale)
+        plt.xlabel('Column frequency [MHz]')
+        plt.ylabel('Row frequency [MHz]')
+        plt.legend(
+            handles=[
+                plt.plot([],ls="-", color='C0')[0],
+                plt.plot([],ls="-", color='C4')[0],
+                plt.scatter([],[], color='C1')],
+            labels=['column dispersion [<40dBc]', 'row dispersion [<40dBc]', 'tweezer site'])
 
     def plot_tweezers_intermodulation(self, dac_amp=1, offset_dB=28, decay_distance=10, weighted=True, min_dB=None):
 
@@ -154,7 +169,7 @@ class AODDevice:
 
         for tweezer in self.tweezer_group.tweezers:
             pos = tweezer.position
-            plt.scatter(pos.x, pos.y, c='C1')
+            plt.scatter(pos[0], pos[1], c='C1')
 
         plt.xticks(np.arange(xmin-pad, xmax+pad+self.spacing+1e-3, 2*self.spacing), rotation=-45)
         plt.yticks(np.arange(ymin-pad, ymax+pad+self.spacing+1e-3, 2*self.spacing))

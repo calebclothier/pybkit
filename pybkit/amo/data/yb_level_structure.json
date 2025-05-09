@@ -559,6 +559,13 @@
                 "units": "cm-1",
                 "source": "Yb Level Structure (NIST)"
             }
+        ],
+        "magnetic_dipole_hyperfine_constant": [
+            {
+                "value": -2.988,
+                "units": "GHz",
+                "source": "https://link.springer.com/article/10.1007/BF01436679"
+            }
         ]
     },
     {
@@ -575,6 +582,13 @@
                 "units": "cm-1",
                 "source": "Yb Level Structure (NIST)"
             }
+        ],
+        "magnetic_dipole_hyperfine_constant": [
+            {
+                "value": 2.635,
+                "units": "GHz",
+                "source": "https://link.springer.com/article/10.1007/BF01436679"
+            }
         ]
     },
     {
@@ -590,6 +604,13 @@
                 "value": 39966.09,
                 "units": "cm-1",
                 "source": "Yb Level Structure (NIST)"
+            }
+        ],
+        "magnetic_dipole_hyperfine_constant": [
+            {
+                "value": 2.030,
+                "units": "GHz",
+                "source": "https://link.springer.com/article/10.1007/BF01436679"
             }
         ]
     },

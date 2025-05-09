@@ -8,10 +8,16 @@ import json
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy import constants
+from sympy.physics.wigner import wigner_6j
+from sympy.physics.quantum.cg import CG
 
-from .laser import GaussianLaser, wavelength_to_rgb
-from .polarizability import alpha_S, alpha_V, alpha_T, get_3P1_core_polarizability
-from .. import units
+from pybkit.amo.laser import GaussianLaser, wavelength_to_rgb
+from pybkit.amo.polarizability import (
+    scalar_polarizability, 
+    vector_polarizability, 
+    tensor_polarizability,
+    get_3P1_core_polarizability)
+from pybkit import units
 
 
 Hz_to_cm = 3.335641e-11
@@ -30,8 +36,8 @@ term_symbol_L_map = {
 class EnergyLevel(ABC):
     """Abstract base class for all energy level classes."""
 
-    def __init__(self, energy) -> None:
-        self.energy = energy
+    def __init__(self, energy_cm) -> None:
+        self.energy_cm = energy_cm
 
 
 class FineEnergyLevel(EnergyLevel):
@@ -53,7 +59,7 @@ class FineEnergyLevel(EnergyLevel):
     def __init__(
         self,
         config: str,
-        energy: float,
+        energy_cm: float,
         S: float,
         L: float,
         J: float,
@@ -64,7 +70,9 @@ class FineEnergyLevel(EnergyLevel):
         hyperfine_constant: Optional[float] = 0
     ):
         self.config = config
-        self.energy = energy
+        self.energy_cm = energy_cm
+        self.energy_J = energy_cm * cm_to_J
+        self.energy_Hz = energy_cm / Hz_to_cm
         self.S = S
         self.L = L
         self.J = J
@@ -181,13 +189,13 @@ class FineEnergyLevel(EnergyLevel):
             gJ = 0
         else:
             gJ = self.lande_g
-        gF = gJ + (gI - gJ) * (F*(F+1) + I*(I+1) - self.J*(self.J+1)) / (2*F*(F+1))
-        dE = -mu_B * gF * mF * B_field / constants.Planck
+        gF = gJ + (gI - gJ) * (F * (F + 1) + I * (I + 1) - self.J * (self.J + 1)) / (2 * F * (F + 1))
+        dE = mu_B * gF * mF * B_field / constants.Planck
         return dE
 
     def get_hyperfine_levels(
         self,
-        B_field: float,
+        B_field: float = None,
         I: Optional[float] = None
     ) -> List['HyperfineEnergyLevel']:
         """Generates a list of hyperfine levels based on the magnetic field and nuclear spin.
@@ -205,8 +213,12 @@ class FineEnergyLevel(EnergyLevel):
         """
         if I is None and self.atom is None:
             raise ValueError("Must either specify a parent atom or the nuclear spin I")
+        if B_field is None and self.atom is None:
+            raise ValueError("Must either specify a parent atom or the magnetic field")
         if I is None:
             I = self.atom.I
+        if B_field is None:
+            B_field = self.atom.B_field
         min_F, max_F = abs(self.J - I), abs(self.J + I)
         n_levels = int(max_F - min_F) + 1
         levels = []
@@ -218,12 +230,12 @@ class FineEnergyLevel(EnergyLevel):
                 hf_shift *= Hz_to_cm
                 zeeman_shift = self.calculate_zeeman_shift(I=I, F=F, mF=mF, B_field=B_field)
                 zeeman_shift *= Hz_to_cm
-                hf_energy = self.energy + hf_shift + zeeman_shift
+                hf_energy = self.energy_cm + hf_shift + zeeman_shift
                 level = HyperfineEnergyLevel(
                     uid=f'{self.uid} F={F} mF={mF}',
                     fine_level=self,
                     config=self.config,
-                    energy=hf_energy,
+                    energy_cm=hf_energy,
                     S=self.S,
                     L=self.L,
                     J=self.J,
@@ -254,7 +266,7 @@ class HyperfineEnergyLevel(FineEnergyLevel):
     def __init__(
         self,
         config,
-        energy,
+        energy_cm,
         S, L, J,
         I, F, mF,
         uid=None,
@@ -263,7 +275,7 @@ class HyperfineEnergyLevel(FineEnergyLevel):
         super().__init__(
             uid=uid,
             config=config,
-            energy=energy,
+            energy_cm=energy_cm,
             S=S, L=L, J=J)
         self.I = I
         self.F = F
@@ -300,6 +312,8 @@ class EnergyTransition:
     ):
         if level1 == level2:
             raise ValueError(f'Cannot have transition between identical levels: {level1}')
+        if not isinstance(level1, EnergyLevel) or not isinstance(level1, EnergyLevel):
+            raise TypeError('Levels must be of type EnergyLevel')
         self.level1 = level1
         self.level2 = level2
         self.detuning_Hz = detuning_Hz
@@ -334,7 +348,7 @@ class EnergyTransition:
     
     def calculate_energy(self, unit: str = 'J') -> float:
         """Calculate transition energy in specified units"""
-        dE = (self.level2.energy - self.level1.energy)
+        dE = (self.level2.energy_cm - self.level1.energy_cm)
         if unit == 'J':
             return dE * cm_to_J + self.calculate_detuning('J')
         elif unit == 'cm^{-1}':
@@ -408,11 +422,17 @@ class AtomSpecies:
 
     def get_fine_level(self, level: str) -> FineEnergyLevel:
         """Get fine energy level by uid."""
-        return self._fine_level_dict[level]
+        if level in self.fine_level_ids:
+            return self._fine_level_dict[level]
+        else:
+            raise KeyError(f'FineEnergyLevel "{level}" does not exist for Atom "{str(self)}"')
 
     def get_hyperfine_level(self, level: str) -> HyperfineEnergyLevel:
         """Get hyperfine energy level by uid."""
-        return self._hyperfine_level_dict[level]
+        if level in self.hyperfine_level_ids:
+            return self._hyperfine_level_dict[level]
+        else:
+            raise KeyError(f'HyperfineEnergyLevel "{level}" does not exist for Atom "{str(self)}"')
 
     def get_level(self, level: str) -> EnergyLevel:
         """Get energy level by uid."""
@@ -503,35 +523,65 @@ class AtomSpecies:
         """Loads reduced matrix elements from file. Should be overridden in subclass."""
         return {}
 
-    def get_reduced_matrix_element(self, level1: str, level2: str, source: bool = False):
-        """Gets the reduced matrix element between two energy levels."""
+    def get_reduced_matrix_element(
+        self, 
+        level1: Union[str, FineEnergyLevel], 
+        level2: Union[str, FineEnergyLevel], 
+        include_source: bool = False
+    ) -> float:
+        """Gets the reduced matrix element < J || d || J '> between two FineEnergyLevel"""
+        # Convert string uids to FineEnergyLevel objects if needed
+        if isinstance(level1, str):
+            level1 = self.get_fine_level(level1)
+        if isinstance(level2, str):
+            level2 = self.get_fine_level(level2)
         try:
-            entry = self._reduced_matrix_elements[level1][level2]
-            if source:
+            entry = self._reduced_matrix_elements[level1.uid][level2.uid]
+            if include_source:
                 return entry
             else:
                 return entry['value']
         except KeyError:
             return None
+        
+    def get_matrix_element(
+        self, 
+        level1: Union[str, HyperfineEnergyLevel], 
+        level2: Union[str, HyperfineEnergyLevel]
+    ) -> float:
+        """Gets the matrix element < F, mF | d | F', mF' > between two HyperfineEnergyLevel"""
+        # Convert string uids to HyperfineEnergyLevel objects if needed
+        if isinstance(level1, str):
+            level1 = self.get_hyperfine_level(level1)
+        if isinstance(level2, str):
+            level2 = self.get_hyperfine_level(level2)
+        
+        J_rme = self.get_reduced_matrix_element(level1.fine_level, level2.fine_level)
+        J_to_F_rme_prefactor = float(wigner_6j(level1.J, level2.J, 1, level2.F, level1.F, self.I)) * \
+                               (-1)**(level2.F + level1.J + 1 + self.I) * \
+                               np.sqrt((2 * level2.F + 1) * (2 * level1.J + 1))
+        F_rme = J_to_F_rme_prefactor * J_rme
+        q = level2.mF - level1.mF
+        if q not in [-1, 0, 1]:
+            return 0
+        matrix_element_prefactor = (-1)**(level2.F - level1.F + level2.mF - level1.mF) * \
+                                   np.sqrt((2 * level1.F + 1) / (2 * level2.F + 1)) * \
+                                   CG(level1.F, level1.mF, 1, q, level2.F, level2.mF).doit()
+        matrix_element = float(matrix_element_prefactor) * F_rme
+        return matrix_element
 
     def calculate_polarizability(
         self,
-        level: Union[str, 'HyperfineEnergyLevel'],
+        level: Union[str, HyperfineEnergyLevel],
         wavelength: Union[float, np.ndarray],
         vector_coeff: float,
         unit: str = 'atomic'
     ) -> Union[float, np.ndarray]:
-        """Calculates polarizability of a hyperfine energy level at given wavelength.
+        """Calculates polarizability of a hyperfine energy level at given wavelength."""
+        # Convert string uid to HyperfineEnergyLevel object if needed
+        if isinstance(level, str):
+            level = self.get_hyperfine_level(level)
         
-        Underlying theory: https://www.epj.org/images/stories/news/2013/epj_d_01-05-13.pdf
-        
-        Args:
-            level: Hyperfine energy level
-            wavelength: Light wavelength [m]
-            vector_coeff: Coefficient for vector polarizability
-        Returns:
-            Union[float, np.ndarray]: Polarizability [atomic units]
-        """
         hf_level = self.get_level(level)
         assert isinstance(hf_level, HyperfineEnergyLevel), 'Level must be a HyperfineEnergyLevel'
         fine_level1 = hf_level.fine_level
@@ -557,10 +607,10 @@ class AtomSpecies:
         sum_V = 0
         sum_T = 0
         for fine_level2 in self.fine_levels:
-            if self.get_reduced_matrix_element(fine_level1.uid, fine_level2.uid):
-                sum_S += alpha_S(self, fine_level1, fine_level2, omega)
-                sum_V += alpha_V(self, fine_level1, fine_level2, omega, F)
-                sum_T += alpha_T(self, fine_level1, fine_level2, omega, F)
+            if fine_level1 != fine_level2 and self.get_reduced_matrix_element(fine_level1.uid, fine_level2.uid):
+                sum_S += scalar_polarizability(self, fine_level1, fine_level2, omega)
+                sum_V += vector_polarizability(self, fine_level1, fine_level2, omega, F)
+                sum_T += tensor_polarizability(self, fine_level1, fine_level2, omega, F)
         alpha_au = prefactor * (sum_S + vector_coeff*mF_over_F*sum_V + tensor_coeff*sum_T)/4
         alpha_au += core_polarizability
         if unit == 'atomic':
@@ -573,21 +623,15 @@ class AtomSpecies:
 
     def calculate_scattering_rate(
         self,
-        level: Union[str, 'HyperfineEnergyLevel'],
+        level: Union[str, HyperfineEnergyLevel],
         wavelength: Union[float, np.ndarray],
         vector_coeff: float
     ) -> Union[float, np.ndarray]:
-        """Calculates scattering rate of a hyperfine energy level at given wavelength.
+        """Calculates scattering rate of a hyperfine energy level at given wavelength."""
+        # Convert string uid to HyperfineEnergyLevel object if needed
+        if isinstance(level, str):
+            level = self.get_hyperfine_level(level)
         
-        Underlying theory found here https://www.epj.org/images/stories/news/2013/epj_d_01-05-13.pdf
-        
-        Args:
-            level: Hyperfine energy level
-            wavelength: Light wavelength [m]
-            vector_coeff: Coefficient for vector polarizability
-        Returns:
-            Union[float, np.ndarray]: Scattering rate [atomic units]
-        """
         hf_level = self.get_level(level)
         assert isinstance(hf_level, HyperfineEnergyLevel), 'Level must be a HyperfineEnergyLevel'
         fine_level1 = hf_level.fine_level
@@ -610,8 +654,8 @@ class AtomSpecies:
         sum_V = 0
         for fine_level2 in self.fine_levels:
             if self.get_reduced_matrix_element(fine_level1.uid, fine_level2.uid):
-                sum_S += alpha_S(self, fine_level1, fine_level2, omega, part='imag')
-                sum_V += alpha_V(self, fine_level1, fine_level2, omega, F, part='imag')
+                sum_S += scalar_polarizability(self, fine_level1, fine_level2, omega, part='imag')
+                sum_V += vector_polarizability(self, fine_level1, fine_level2, omega, F, part='imag')
         return prefactor * (sum_S + vector_coeff*mF_over_F*sum_V)/4 #+ core_polarizability
 
     def calculate_light_shift(self, level, F, mF, laser):
@@ -660,24 +704,24 @@ class AtomSpecies:
                     config_colors[term_L] = color
                     i += 1
             x0 = arrange_level(level)
-            ax.hlines(factor * level.energy, xmin=x0, xmax=x0+0.1, color='gray') #color)
+            ax.hlines(factor * level.energy_cm, xmin=x0, xmax=x0+0.1, color='gray') #color)
             # ax.text(x=x0+0.1, y=factor * level.energy, s=level.formatted_label, color='gray')
             if level.S == 1 and level.J != (level.L - 1) and level.L != 0:
-                ax.text(x=x0+0.1, y=factor * level.energy, s=level.J, fontsize=8, va='center', color='gray')
+                ax.text(x=x0+0.1, y=factor * level.energy_cm, s=level.J, fontsize=8, va='center', color='gray')
             else:
                 if level.S == 1 and level.L > 0:
                     label = '_'.join([*level.formatted_label.split('_')[:-1], '{J}$'])
-                    ax.text(x=x0+0.1, y=factor * level.energy, s=level.J, fontsize=8, va='center', color='gray')
+                    ax.text(x=x0+0.1, y=factor * level.energy_cm, s=level.J, fontsize=8, va='center', color='gray')
                 else:
                     label = level.formatted_label
-                ax.text(x=x0, y=factor * level.energy, s=label, va='top', color='gray')
+                ax.text(x=x0, y=factor * level.energy_cm, s=label, va='top', color='gray')
         # plot transitions
         if transitions:
             for transition in transitions:
                 x = arrange_level(transition.level1)
-                y = factor * transition.level1.energy
+                y = factor * transition.level1.energy_cm
                 xp = arrange_level(transition.level2)
-                yp = factor * transition.level2.energy
+                yp = factor * transition.level2.energy_cm
                 dx = xp - x
                 dy = yp - y
                 C='black'
@@ -713,7 +757,7 @@ class AtomSpecies:
         config_colors = {}
         i = 0
         for level in self.fine_levels:
-            for hf_level in level.get_hyperfine_levels(B_field=self.B_field, I=self.I):
+            for hf_level in level.get_hyperfine_levels():
                 if term_symbols_only and hf_level.term_symbol is None:
                     continue
                 elif hf_level.term_symbol is None:
@@ -726,16 +770,16 @@ class AtomSpecies:
                         color = f'C{i}'
                         config_colors[term_L] = color
                         i += 1
-                ax.hlines(factor*hf_level.energy, xmin=hf_level.mF-0.25, xmax=hf_level.mF+0.25, color=color)
+                ax.hlines(factor*hf_level.energy_cm, xmin=hf_level.mF-0.25, xmax=hf_level.mF+0.25, color=color)
                 if label:
-                    ax.text(x=hf_level.mF-0.25, y=factor*hf_level.energy, s=hf_level.formatted_label, color=color)
+                    ax.text(x=hf_level.mF-0.25, y=factor*hf_level.energy_cm, s=hf_level.formatted_label, color=color)
         # plot transitions
         if transitions:
             for transition in transitions:
                 x = transition.level1.mF
-                y = factor * transition.level1.energy
+                y = factor * transition.level1.energy_cm
                 xp = transition.level2.mF
-                yp = factor * transition.level2.energy
+                yp = factor * transition.level2.energy_cm
                 dx = xp - x
                 dy = yp - y
                 ax.arrow(x,y,dx,dy, color=transition.color, zorder=999, length_includes_head=True)
@@ -768,7 +812,7 @@ class Yb171(AtomSpecies):
                 uid='imaginary_level_3P0 J=1',
                 config='combination',
                 S=None, L=None, J=1,
-                energy=43880.31))
+                energy_cm=43880.31))
         super().__init__(
             fine_energy_levels,
             nuclear_spin=self.__class__.nuclear_spin,
@@ -801,7 +845,7 @@ class Yb171(AtomSpecies):
                 atom=self,
                 uid=item['level_id'],
                 config=item['configuration'],
-                energy=item['energy'][0]['value'],
+                energy_cm=item['energy'][0]['value'],
                 S=item['S'], L=item['L'], J=item['J'],
                 lande_g=item.get('lande_g', None),
                 core_polarizability=core_polarizability,
